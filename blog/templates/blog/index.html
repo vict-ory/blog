@@ -1,0 +1,78 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <!-- Page Content  -->
+  <div id="content" class="p-4 p-md-5 pt-5">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %}
+        {% endif %}
+	<div class="d-flex justify-content-between">
+		<h2 class="mb-4">BLOG</h2>
+		<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#post"><i></i> Creat A Post</button>
+	</div>
+	<hr>
+	{% for post in posts %}
+	<div class="row">
+		<div class="col-10 border">
+			<div class="row">
+				<div class="col-1">
+					<img src="{{post.user.passport.url}}" class="img-fluid rounded-circle" alt="user photo">
+				</div>
+				
+				<div class="col-9 mx-5">
+					<div class="d-flex justify-content-between">
+						<h1>{{post.title}}</h1>
+						{% if user.username == post.user.username %}
+						<div>
+							<a href="{% url 'delete-post' post.id %}" class="btn btn-danger">Delete</a>
+							<a href="{% url 'update-post' post.id %}" class="btn btn-primary">Edit</a>
+						</div>
+						{% endif %}
+					</div>
+					
+					<p>
+						{{post.content}}
+					</p>
+					<div class="d-flex justify-content-between mx-auto">
+						<p>Author: <a href="">{{post.user.last_name}} {{post.user.first_name}}</a></p>
+						<p>last modified: <i>{{post.date}}</i></p>
+
+					</div>
+				</div>
+			</div>
+			
+
+		</div>
+	</div>
+	<hr>
+	{% endfor %}
+</div>
+
+<div class="modal" id="post">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+		<!-- Modal Header -->
+		<div class="modal-header">
+			<h4 class="modal-title">CREATE A POST</h4>
+			<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+		</div>
+
+		<!-- Modal body -->
+		<div class="modal-body">
+			<form action="" method="post">
+				{% csrf_token %}
+				{{form|crispy}}
+				<button type="submit" name="post" class="btn btn-secondary w-100">SUBMIT</button>
+			</form>
+		</div>
+		
+
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

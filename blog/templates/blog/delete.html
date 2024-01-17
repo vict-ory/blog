@@ -1,0 +1,13 @@
+{% extends 'blog/main.html' %}
+{% block content %}
+<!-- Page Content  -->
+<div id="content" class="p-4 p-md-5 pt-5">
+
+    <h2 class="mb-4">CONFIRM YOUR DELETE</h2>
+    <h2>Click proceed to delete the post</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">PROCEED</button>
+    </form>
+</div>
+{% endblock content %}

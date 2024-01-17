@@ -1,0 +1,55 @@
+{% extends 'blog/main.html' %}
+{% block content %}
+<!-- Page Content  -->
+<div id="content" class="p-4 p-md-5 pt-5">
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %}
+        {% endif %}
+    <h2 class="mb-4">REGISTER AS A NEW USER</h2>
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="">Lastname</label>
+                    <input type="text" class="form-control" placeholder="Lastname" name="last">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Firstname</label>
+                    <input type="text" class="form-control" placeholder="Firstname" name="first">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="email" class="form-control" placeholder="Email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Username</label>
+                    <input type="text" class="form-control" placeholder="Username" name="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Mobile</label>
+                    <input type="text" class="form-control" placeholder="Mobile" name="mobile">
+                </div>
+            
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" class="form-control" placeholder="Your Password" name="pass1">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Confirm password</label>
+                    <input type="password" class="form-control" placeholder="Confirm password" name="pass2">
+                </div>
+
+                <button type="submit" class="btn btn-secondary w-100">REGISTER</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

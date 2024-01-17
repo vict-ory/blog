@@ -1,0 +1,34 @@
+{% extends 'blog/main.html' %}
+{% block content %}
+  <!-- Page Content  -->
+  <div id="content" class="p-4 p-md-5 pt-5">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %}
+        {% endif %}
+	<div class="d-flex justify-content-between">
+		<h2 class="mb-4">NEWSLETTER</h2>
+	</div>
+	<hr>
+
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="Subject">Subject</label>
+                <input type="text" name="subject" required class="form-control" id="">
+            </div>
+            <div class="form-group">
+                <label for="Message">Message</label>
+                <textarea name="message" id="" cols="30" rows="15" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary w-100">SEND</button>
+        </form>
+    </div>
+    
+	
+</div>
+
+
+{% endblock content %}
